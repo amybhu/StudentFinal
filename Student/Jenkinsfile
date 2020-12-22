@@ -24,14 +24,7 @@ pipeline{
 	    }
 	    
 	    
-		stage('Deploy Stage'){
-			steps{
-				sh '''
-				cd StudentTest
-				ansible-playbook Demo.yml
-			'''
-		    }
-	    }
+	
 	    
 	 }
 	 post{
