@@ -33,7 +33,6 @@
         copy:
             src: /var/lib/jenkins/workspace/deploy/Student/target/StudentTest-0.0.1-SNAPSHOT.war
             dest: /usr/local/tomcat/webapps/
-      - name: Start Tomcat
-        command: /usr/local/tomcat/bin/startup.sh
+      
       
   
