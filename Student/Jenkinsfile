@@ -1,8 +1,8 @@
 pipeline{
-	agent any
+    agent any
 	
 	stages{
-		stage('Compile Stage'){
+	  stage('Compile Stage'){
 			steps{
 				
 					sh '''
@@ -11,27 +11,26 @@ pipeline{
     '''
 		    }
 	    }
-	
-	
 	    
-		stage('Test Stage'){
+	    stage('QA test Stage'){
 			steps{
-				
 					sh '''
           cd Student
           mvn clean test package sonar:sonar
     '''
+				}
+		    }
+		     stage('Junit test Stage'){
+			steps{
+				
+				junit 'Student/target/surefire-reports/*.xml'
 		    }
 	    }
+	  stage('ansible-deploy'){
+	      steps{
+	          ansiblePlaybook credentialsId: 'Ansible', disableHostKeyChecking: true, installation: 'AnsibleTest', inventory: 'Student/dev.inv', playbook: 'Student/Test.yml'
+	      }
+	  }
 	    
-	    
-	
-	    
-	 }
-	 post{
-	  	always{
-	  	 	junit 'Student/target/surefire-reports/*.xml'
-	  	 }
-	  	}
-	 
+	}
 }
