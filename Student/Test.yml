@@ -32,7 +32,7 @@
       - name: Copy the war file
         copy:
             src: /var/lib/jenkins/workspace/deploy/Student/target/StudentTest-0.0.1-SNAPSHOT.war
-            dest: /usr/local/apache-tomcat-8.5.6/webapps/
+            dest: /usr/local/apache-tomcat-8.5.61/webapps/
       
       
   
