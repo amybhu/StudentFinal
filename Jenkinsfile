@@ -6,7 +6,7 @@ pipeline{
 			steps{
 				
 					sh '''
-          cd Student
+          
           mvn compile 
     '''
 		    }
@@ -15,7 +15,7 @@ pipeline{
 	    stage('QA test Stage'){
 			steps{
 					sh '''
-          cd Student
+          
           mvn clean test package sonar:sonar
     '''
 				}
@@ -23,16 +23,16 @@ pipeline{
 		     stage('Junit test Stage'){
 			steps{
 				
-				junit 'Student/target/surefire-reports/*.xml'
+				junit 'target/surefire-reports/*.xml'
 		    }
 	    }
-	  stage('ansible-deploy'){
-	      steps{
-		      sh 'ansible-playbook Student/Test.yml'
+	 // stage('ansible-deploy'){
+	     // steps{
+		   //   sh 'ansible-playbook Student/Test.yml'
 		  
 	        // ansiblePlaybook credentialsId: 'Ansible', disableHostKeyChecking: true, installation: 'AnsibleTest', inventory: 'Student/dev.inv', playbook: 'Student/Test.yml'
-	      }
-	  }
+	    //  }
+	  //}
 	    
 	}
 }
